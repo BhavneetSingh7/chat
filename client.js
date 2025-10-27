@@ -1,5 +1,6 @@
-const ws = new WebSocket("ws://127.0.0.1:8080");
+const ws = new WebSocket("ws://localhost:8080/chat");
 var interval;
+console.log(ws.url);
 
 ws.addEventListener(
     "open", () => {
