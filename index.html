@@ -4,9 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
+    <style>
+        #chat {
+            background-color: lightgray;   
+            border: 1px solid black;
+            height: 75vh;
+            width: 100%;
+            overflow: scroll;
+            background-image: linear-gradient(2);
+        }
+        #message {
+            width: 88vw;
+            height: 10vh;
+        }
+        #send {
+            width: 9vw;
+            height: 10vh;
+        }
+    </style>
 </head>
 <body>
-    <div id="content"></div>
+    <div id="chatbox">
+    <div id="chat"></div>
+    <div id="chat-message">
+        <input type="text" name="message" id="message">
+        <input type="button" value="Send" id="send">
+    </div>
+    </div>
 </body>
-<script src="./client.js"></script>
+<!-- <script src="./client.js"></script> -->
+ <script>
+    const message = document.getElementById("message");
+    const chat = document.getElementById("chat");
+    const ws = new WebSocket("ws://localhost:8080/chat");
+
+    ws.addEventListener("open", () => {console.log("CONNECTED");});
+
+    ws.addEventListener("message", (e) => {
+        const m = document.createElement("div");
+        m.classList.add("received");
+        m.textContent = "Friend: " + e.data;
+        chat.appendChild(m);
+    });
+
+    ws.addEventListener("error", (e) => {console.log(`error: ${e}`);});
+    ws.addEventListener("close", () => {console.log("DISCONNECTED");});
+    
+    send.addEventListener("click", (e) => {
+        e.preventDefault();
+        message.setAttribute("disabled", true);
+        console.log(message.value);
+        ws.send(message.value);
+    
+        const m = document.createElement("div");
+        m.classList.add("sent");
+        m.textContent = "Me: " + message.value;
+        chat.appendChild(m);
+
+        message.removeAttribute("disabled");
+    })
+ </script>
 </html>
