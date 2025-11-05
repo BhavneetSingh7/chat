@@ -21,6 +21,9 @@
             width: 9vw;
             height: 10vh;
         }
+        .sent {
+            text-align: right;
+        }
     </style>
 </head>
 <body>
@@ -36,6 +39,7 @@
  <script>
     const message = document.getElementById("message");
     const chat = document.getElementById("chat");
+    const send = document.getElementById("send");
     const ws = new WebSocket("ws://localhost:8080/chat");
 
     ws.addEventListener("open", () => {console.log("CONNECTED");});
@@ -50,8 +54,8 @@
     ws.addEventListener("error", (e) => {console.log(`error: ${e}`);});
     ws.addEventListener("close", () => {console.log("DISCONNECTED");});
     
-    send.addEventListener("click", (e) => {
-        e.preventDefault();
+    function sendMessage(event) {
+        event.preventDefault();
         message.setAttribute("disabled", true);
         console.log(message.value);
         ws.send(message.value);
@@ -62,6 +66,10 @@
         chat.appendChild(m);
 
         message.removeAttribute("disabled");
+    }
+    send.addEventListener("click", sendMessage)
+    message.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") sendMessage(e);
     })
  </script>
 </html>

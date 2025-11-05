@@ -68,7 +68,7 @@ func Chat(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Println("error while reading incoming message:", err)
 		}
-		time.Sleep(50 * time.Millisecond) //Delay
+		time.Sleep(500 * time.Millisecond) //Delay
 		err = c.WriteMessage(mt, msg)
 		if err != nil {
 			log.Println("error writing message: ", err)
