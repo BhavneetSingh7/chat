@@ -12,3 +12,11 @@ Interconnecting protocol could be WebSocket, RPC or HTTP2.
 2. How server persists messages of a chat?
 3. How message received by 1 client is broadcasted to other clients?
 
+# Roadmap
+
+- [ ] Client sending messages to server
+- [ ] Client joining/initiating/ending chat(room)
+- [ ] Server parsing various messages
+- [ ] Server persisting in chats
+- [ ] Server broadcasting received messages
+
