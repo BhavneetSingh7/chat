@@ -47,7 +47,8 @@
     ws.addEventListener("message", (e) => {
         const m = document.createElement("div");
         m.classList.add("received");
-        m.textContent = "Friend: " + e.data;
+        const msg = JSON.parse(e.data);
+        m.textContent = "Friend: " + msg.content;
         chat.appendChild(m);
     });
 
@@ -58,7 +59,7 @@
         event.preventDefault();
         message.setAttribute("disabled", true);
         console.log(message.value);
-        ws.send(message.value);
+        ws.send(JSON.stringify({"content" : message.value}));
     
         const m = document.createElement("div");
         m.classList.add("sent");

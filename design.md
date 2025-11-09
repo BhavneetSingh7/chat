@@ -14,9 +14,15 @@ Interconnecting protocol could be WebSocket, RPC or HTTP2.
 
 # Roadmap
 
+- [ ] User management to distinguish client and chats
 - [ ] Client sending messages to server
 - [ ] Client joining/initiating/ending chat(room)
 - [ ] Server parsing various messages
 - [ ] Server persisting in chats
 - [ ] Server broadcasting received messages
+- [ ] User segregation and management
+- [ ] Abstracting away user mgmt
+- [ ] Session management
+- [ ] Reliable broadcasting via MQs?
+- [ ] Multi-device same user - Synchronization
 
