@@ -9,8 +9,13 @@ Interconnecting protocol could be WebSocket, RPC or HTTP2.
 
 3 core functionalities
 1. How client sends messages?
+Client connects using a protocol and delivers a message to server. Server decides what kind of message it is.
+
 2. How server persists messages of a chat?
+LIFO order in storage. What to do in case of racing?
+
 3. How message received by 1 client is broadcasted to other clients?
+Client must be polling/listening all the time?
 
 # Roadmap
 
